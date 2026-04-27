@@ -136,7 +136,6 @@ function displayMovies(movieList) {
     .map((item) => {
       // Her indsætter jeg HTML-kode i containeren med data fra hvert objekt.
       return `
-      <!-- Her opbygger jeg en HTML-struktur med data fra mit JavaScript-array -->
       <article>
          <button class="favorite-btn" data-id="${item.id}" aria-label="Vælg favorit">
                     ${star}
