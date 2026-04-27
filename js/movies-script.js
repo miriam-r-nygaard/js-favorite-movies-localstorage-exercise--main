@@ -105,3 +105,5 @@ const movies = [
     url: "https://www.imdb.com/title/tt0110912/",
   },
 ];
+
+// Henter de HTML-elementer, vi 
