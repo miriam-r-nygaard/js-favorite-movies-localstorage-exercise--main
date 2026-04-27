@@ -137,18 +137,15 @@ function displayMovies(movieList) {
       // Her indsætter jeg HTML-kode i containeren med data fra hvert objekt.
       return `
       <article>
-         <button class="favorite-btn" data-id="${item.id}" aria-label="Vælg favorit">
-                    ${star}
-         </button>
-         <h2>${item.title}</h2>
+         <h2>${item.titel}</h2>
          <ul>
             <li><p>${item.genre}</p></li>
             <li><p>${item.year}</p></li>
             <li><p>${item.duration}</p></li>
          </ul>
          <figure>
-          <a href="${item.url}" target="_blank" rel="bb"><img src="${item.img}" alt="${item.title}"></a>
-            <figcaption>${item.title}</figcaption>
+          <a href="${item.url}" target="_blank" rel="bb"><img src="${item.img}" alt="${item.titel}"></a>
+            <figcaption>${item.titel}</figcaption>
          </figure>  
       </article>
     `;
