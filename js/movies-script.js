@@ -106,6 +106,8 @@ const movies = [
   },
 ];
 
+// opgave 3: Byg forsiden med alle film og favoritstjerner
+
 // Henter de HTML-elementer, vi skal arbejde med
 const movieContainer = document.querySelector("#movies-container");
 
