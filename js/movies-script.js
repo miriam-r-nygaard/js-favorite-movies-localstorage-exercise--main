@@ -149,10 +149,16 @@ function displayMovies(movieList) {
                     ${star}
         </button>
 
-        <h2>${item.titel}</h2>
-        <h3><span id="genre">Genre:</span> ${item.genre}</h3>
-        <h3><span id="year">Year:</span> ${item.year}</h3>
-        <p><span id="beskrivelse">Duration:</span> ${item.duration}</p>
+        <h2>${item.title}</h2>
+        <ul>
+            <li><p>${item.genre}</p></li>
+            <li><p>${item.year}</p></li>
+            <li><p>${item.duration}</p></li>
+        </ul>
+        <figure>
+          <a href="${item.url}" target="_blank" rel="bb"><img src="${item.img}" alt="${item.title}"></a>
+          <figcaption>${item.title}</figcaption>
+        </figure>  
       </article>
     `;
     })

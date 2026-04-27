@@ -138,9 +138,19 @@ function displayMovies(movieList) {
       return `
       <!-- Her opbygger jeg en HTML-struktur med data fra mit JavaScript-array -->
       <article>
-         <h3><span id="genre">Genre:</span> ${item.genre}</h3>
-         <h3><span id="year">Year:</span> ${item.year}</h3>
-         <p><span id="beskrivelse">Duration:</span> ${item.duration}</p>
+         <button class="favorite-btn" data-id="${item.id}" aria-label="Vælg favorit">
+                    ${star}
+         </button>
+         <h2>${item.title}</h2>
+         <ul>
+            <li><p>${item.genre}</p></li>
+            <li><p>${item.year}</p></li>
+            <li><p>${item.duration}</p></li>
+         </ul>
+         <figure>
+          <a href="${item.url}" target="_blank" rel="bb"><img src="${item.img}" alt="${item.title}"></a>
+            <figcaption>${item.title}</figcaption>
+         </figure>  
       </article>
     `;
     })
