@@ -106,4 +106,91 @@ const movies = [
   },
 ];
 
-// Henter de HTML-elementer, vi 
+// Henter de HTML-elementer, vi skal arbejde med
+const movieContainer = document.querySelector("#movies-container");
+
+/*
+  Vi gemmer kun film id'er som favoritter.
+  Hvis der ikke ligger noget i localStorage endnu, bruger vi et tomt array.
+*/
+let favoriteIds = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
+
+/*
+  Hjælpefunktion:
+  Undersøger om en id allerede er favorit.
+*/
+function isFavorite(id) {
+  return favoriteIds.includes(id);
+}
+
+/*
+Her opretter jeg en funktion, som skal vise filmene i browseren.
+Funktionen modtager en liste med film som parameter.
+*/
+function displayMovies(movieList) {
+  const html = movieList
+    .map((item) => {
+      // const star = isFavorite(item.id) ? "★" : "☆";
+      let star;
+
+      if (isFavorite(item.id)) {
+        star = "★";
+      } else {
+        star = "☆";
+      }
+
+      // Her indsætter jeg HTML-kode i containeren med data fra hvert objekt.
+      // Her opbygger jeg en HTML-struktur med data fra mit JavaScript-array -->
+      return `
+      <article>
+        <button class="favorite-btn" data-id="${item.id}" aria-label="Vælg favorit">
+                    ${star}
+        </button>
+
+        <h2>${item.titel}</h2>
+        <h3><span id="genre">Genre:</span> ${item.genre}</h3>
+        <h3><span id="year">Year:</span> ${item.year}</h3>
+        <p><span id="beskrivelse">Duration:</span> ${item.duration}</p>
+      </article>
+    `;
+    })
+    .join("");
+
+  movieContainer.innerHTML = html;
+
+  /*
+      Efter vi har sat HTML ind i DOM'en,
+      finder vi alle stjerne-knapperne
+      og giver dem et click event.
+    */
+  const favoriteButtons = document.querySelectorAll(".favorite-btn");
+
+  favoriteButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const moviesId = Number(button.dataset.id);
+      toggleFavorite(moviesId);
+    });
+  });
+}
+
+/*
+  Denne funktion skifter mellem:
+  - tilføj favorit
+  - fjern favorit
+*/
+function toggleFavorite(id) {
+  if (favoriteIds.includes(id)) {
+    favoriteIds = favoriteIds.filter((favoriteId) => {
+      return favoriteId !== id;
+    });
+  } else {
+    favoriteIds.push(id);
+  }
+
+  localStorage.setItem("favoriteMovies", JSON.stringify(favoriteIds));
+
+  displayMovies(movies);
+}
+
+// Her kalder jeg funktionen og sender hele movies-arrayet med ind som argument.
+displayMovies(movies);
